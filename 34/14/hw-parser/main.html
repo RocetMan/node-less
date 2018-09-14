@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>NodeJS Website</title>
+</head>
+<body>
+<h1>*(5) Only JS (Home Work)</h1>
+<div id="block"></div>
+
+<script>
+    var http = new XMLHttpRequest();
+    http.open("GET", "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=3", true);
+    http.onload = function (){
+        var content = document.getElementById('block');
+        content.innerText = http.responseText;
+    };
+    http.send(null);
+</script>
+</body>
+</html>
