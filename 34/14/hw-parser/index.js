@@ -1,6 +1,7 @@
 const http = require('http'),
       fs = require('fs'),
       request = require('request'),
+      EventEmitter = require('events').EventEmitter,
       url = 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=3';
 
 var answer = '';
@@ -24,7 +25,7 @@ request({
 });
 
 
-var EventEmitter = require('events').EventEmitter;
+
 var emt = new EventEmitter();
 var login = function () {
     console.log('login User: ', Date());
@@ -61,5 +62,6 @@ fs.readFile('main.html', function (err, html) {
             emt.emit('logOut');
             server.close();
         }
+
     }).listen(4000);
 });
