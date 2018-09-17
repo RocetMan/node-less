@@ -12,8 +12,14 @@
     var http = new XMLHttpRequest();
     http.open("GET", "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=3", true);
     http.onload = function (){
-        var content = document.getElementById('block');
-        content.innerText = http.responseText;
+        var myObj = JSON.parse(http.responseText);
+        var table = '';
+        table += "<table border='1'>";
+        for (x in myObj) {
+            table+= "<tr'><td>" + myObj[x].ccy +  "</td><td>"+ myObj[x].base_ccy  +"</td> <td>" + "Buy "  + myObj[x].buy +  "</td><td>"+"Sale " + myObj[x].sale  + "</td></tr>";
+        }
+        table += "</table>";
+        document.getElementById("block").innerHTML = table;
     };
     http.send(null);
 </script>

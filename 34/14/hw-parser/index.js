@@ -2,9 +2,7 @@ const http = require('http'),
       fs = require('fs'),
       request = require('request'),
       url = 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=3';
-
 var answer = '';
-
 request({
     method: 'GET',
     url: url
@@ -12,11 +10,16 @@ request({
 }, function (error, response, body) {
     if (!error && response.statusCode == 200) {
         console.log(body);
-        answer = body;
+        var myObj = JSON.parse(body);
+        var table = '';
+        table += "<table border='1'>";
+        for (x in myObj) {
+            table+= "<tr'><td>" + myObj[x].ccy +  "</td><td>"+ myObj[x].base_ccy  +"</td> <td>" + "Buy "  + myObj[x].buy +  "</td><td>"+"Sale " + myObj[x].sale  + "</td></tr>";
+        }
+        table += "</table>";
+        answer = table;
     }
 });
-
-
 
 
 var EventEmitter = require('events').EventEmitter;
@@ -29,7 +32,6 @@ var logOut = function () {
 };
 emt.on('login', login);
 emt.on('logOut', logOut);
-
 
 
 
@@ -59,33 +61,3 @@ fs.readFile('main.html', function (err, html) {
         }
     }).listen(3000);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
