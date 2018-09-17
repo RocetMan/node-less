@@ -2,7 +2,9 @@ const http = require('http'),
       fs = require('fs'),
       request = require('request'),
       url = 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=3';
+
 var answer = '';
+
 request({
     method: 'GET',
     url: url
@@ -14,7 +16,7 @@ request({
         var table = '';
         table += "<table border='1'>";
         for (x in myObj) {
-            table+= "<tr'><td>" + myObj[x].ccy +  "</td><td>"+ myObj[x].base_ccy  +"</td> <td>" + "Buy "  + myObj[x].buy +  "</td><td>"+"Sale " + myObj[x].sale  + "</td></tr>";
+            table+= "<tr><td style='padding: 5px'>" + myObj[x].ccy +  "</td><td style='padding: 5px'>"+ myObj[x].base_ccy  +"</td> <td style='padding: 5px'>" + "Buy "  + myObj[x].buy +  "</td><td style='padding: 5px'>"+"Sale " + myObj[x].sale  + "</td></tr>";
         }
         table += "</table>";
         answer = table;
@@ -59,5 +61,5 @@ fs.readFile('main.html', function (err, html) {
             emt.emit('logOut');
             server.close();
         }
-    }).listen(3000);
+    }).listen(4000);
 });

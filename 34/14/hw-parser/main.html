@@ -16,7 +16,7 @@
         var table = '';
         table += "<table border='1'>";
         for (x in myObj) {
-            table+= "<tr'><td>" + myObj[x].ccy +  "</td><td>"+ myObj[x].base_ccy  +"</td> <td>" + "Buy "  + myObj[x].buy +  "</td><td>"+"Sale " + myObj[x].sale  + "</td></tr>";
+            table+= "<tr><td style='padding: 5px'>" + myObj[x].ccy +  "</td><td style='padding: 5px'>"+ myObj[x].base_ccy  +"</td> <td style='padding: 5px'>" + "Buy "  + myObj[x].buy +  "</td><td style='padding: 5px'>"+"Sale " + myObj[x].sale  + "</td></tr>";
         }
         table += "</table>";
         document.getElementById("block").innerHTML = table;
